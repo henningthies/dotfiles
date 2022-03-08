@@ -27,7 +27,7 @@ font:
 
 
     # Better font rendering for mac
-    use_thin_strokes: false
+    use_thin_strokes: true
 
     offset:
       y: 1
@@ -39,7 +39,7 @@ window:
       lines: 40
 
     position:
-      x: 250
+      x: 150
       y: 250
 
     padding:
