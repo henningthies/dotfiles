@@ -1,0 +1,145 @@
+
+# Font configuration (changes require restart)
+
+
+# Any items in the `env` entry below will be added as
+# environment variables. Some entries may override variables
+# set by alacritty itself.
+env:
+  # TERM variable
+  #
+  # This value is used to set the `$TERM` environment variable for
+  # each instance of Alacritty. If it is not present, alacritty will
+  # check the local terminfo database and use `alacritty` if it is
+  # available, otherwise `xterm-256color` is used.
+  TERM: xterm-256color
+
+shell:
+  program: /bin/zsh
+  args:
+    - --login
+
+cursor:
+  style: Block
+
+font:
+    size: 14
+    # Normal (roman) font face
+    normal:
+        family: InconsolataGo Nerd Font Mono
+        style: Regular
+
+    # Bold font face
+    bold:
+        family: InconsolataGo Nerd Font Mono
+        style: Bold
+
+    # Italic font face
+    italic:
+        family: InconsolataGo Nerd Font Mono
+        style: Italic
+
+
+    # Better font rendering for mac
+    use_thin_strokes: true
+
+draw_bold_text_with_bright_colors: true
+
+window:
+    dimensions:
+      columns: 200
+      lines: 40
+
+    #position:
+      #x: 150
+      #y: 250
+
+    padding:
+      x: 2
+      y: 2
+
+    dynamic_padding: true
+
+    opacity: 1
+
+    # Startup Mode (changes require restart)
+    #
+    # Values for `startup_mode`:
+    #   - Windowed
+    #   - Maximized
+    #   - Fullscreen
+    #
+    # Values for `startup_mode` (macOS only):
+    #   - SimpleFullscreen
+    startup_mode: SimpleFullscreen
+
+selection:
+  # This string contains all characters that are used as separators for
+  # "semantic words" in Alacritty.
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+
+  # When true, selected text will be copied to the primary clipboard
+  save_to_clipboard: true
+
+# Startup directory, unset or None for home directory
+working_directory: None
+
+scrolling:
+  # How many lines of scrollback to keep,
+  # '0' will disable scrolling.
+  history: 10000
+
+  # Number of lines the viewport will move for every line
+  # scrolled when scrollback is enabled (history > 0).
+  multiplier: 1
+
+
+# Copyright (c) 2017-present Arctic Ice Studio <development@arcticicestudio.com>
+# Copyright (c) 2017-present Sven Greb <code@svengreb.de>
+
+# Project:    Nord Alacritty
+# Version:    0.1.0
+# Repository: https://github.com/arcticicestudio/nord-alacritty
+# License:    MIT
+# References:
+#   https://github.com/alacritty/alacritty
+
+colors:
+  primary:
+    background: '#2e3440'
+    foreground: '#d8dee9'
+    dim_foreground: '#a5abb6'
+  cursor:
+    text: '#2e3440'
+    cursor: '#d8dee9'
+  vi_mode_cursor:
+    text: '#2e3440'
+    cursor: '#d8dee9'
+  selection:
+    text: CellForeground
+    background: '#4c566a'
+  search:
+    matches:
+      foreground: CellBackground
+      background: '#88c0d0'
+    bar:
+      background: '#434c5e'
+      foreground: '#d8dee9'
+  normal:
+    black: '#3b4252'
+    red: '#bf616a'
+    green: '#a3be8c'
+    blue: '#81a1c1'
+    yellow: '#D08770'
+    magenta: '#b48ead'
+    cyan: '#88c0d0'
+    white: '#e5e9f0'
+  bright:
+    black: '#4c566a'
+    red: '#bf616a'
+    green: '#a3be8c'
+    yellow: '#ebcb8b'
+    blue: '#81a1c1'
+    magenta: '#b48ead'
+    cyan: '#8fbcbb'
+    white: '#eceff4'
