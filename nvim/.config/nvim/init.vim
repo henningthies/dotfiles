@@ -40,13 +40,16 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 
 Plug 'mileszs/ack.vim'
-" use the silver searcher instead of ack
-let g:ackprg = 'ag --nogroup --nocolor --column'
+
+Plug 'dbeniamine/cheat.sh-vim'
 
 " Initialize plugin system
 call plug#end()
 
 let mapleader=","
+"
+" use the silver searcher instead of ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 "
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
