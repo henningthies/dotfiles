@@ -1,0 +1,7 @@
+[user]
+	name = Henning Thies
+	email = mail@henning-thies.de
+[init]
+	defaultBranch = master
+[core]
+	excludesFile = ~/.config/git/ignore

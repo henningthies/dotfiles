@@ -101,6 +101,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -lagh"
+alias lg="lazygit"
 
 export BAT_THEME="Nord"
 #export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
