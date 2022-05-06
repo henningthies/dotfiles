@@ -23,25 +23,21 @@ cursor:
   style: Block
 
 font:
-    size: 14
+    size: 11
     # Normal (roman) font face
     normal:
-        family: InconsolataGo Nerd Font Mono
+        family: InconsolataGo Nerd Font
         style: Regular
 
     # Bold font face
     bold:
-        family: InconsolataGo Nerd Font Mono
+        family: InconsolataGo Nerd Font
         style: Bold
 
     # Italic font face
     italic:
-        family: InconsolataGo Nerd Font Mono
+        family: InconsolataGo Nerd Font
         style: Italic
-
-
-    # Better font rendering for mac
-    use_thin_strokes: true
 
 draw_bold_text_with_bright_colors: true
 
@@ -50,9 +46,9 @@ window:
       columns: 200
       lines: 40
 
-    #position:
-      #x: 150
-      #y: 250
+    position:
+      x: 150
+      y: 250
 
     padding:
       x: 2
@@ -60,7 +56,7 @@ window:
 
     dynamic_padding: true
 
-    opacity: 1
+    opacity: 0.95
 
     # Startup Mode (changes require restart)
     #
@@ -71,7 +67,7 @@ window:
     #
     # Values for `startup_mode` (macOS only):
     #   - SimpleFullscreen
-    startup_mode: SimpleFullscreen
+    #startup_mode: SimpleFullscreen
 
 selection:
   # This string contains all characters that are used as separators for
@@ -83,6 +79,8 @@ selection:
 
 # Startup directory, unset or None for home directory
 working_directory: None
+
+live_config_reload: true
 
 scrolling:
   # How many lines of scrollback to keep,
