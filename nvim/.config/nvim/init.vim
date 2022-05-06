@@ -1,6 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'gmarik/Vundle.vim'
+
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
@@ -10,13 +10,11 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'vim-scripts/Rename2'
-Plug 'vim-scripts/ZoomWin'
 Plug 'vim-ruby/vim-ruby'
 Plug 'ngmy/vim-rubocop'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'tsaleh/vim-align'
-Plug 'arcticicestudio/nord-vim'
 Plug 'skalnik/vim-vroom'
 Plug 'preservim/vimux'
 Plug 'machakann/vim-highlightedyank'
@@ -41,7 +39,19 @@ Plug 'saadparwaiz1/cmp_luasnip'
 
 Plug 'mileszs/ack.vim'
 
-Plug 'dbeniamine/cheat.sh-vim'
+Plug 'akinsho/toggleterm.nvim'
+
+" Colorscheme
+Plug 'arcticicestudio/nord-vim'
+Plug 'sainnhe/sonokai'
+Plug 'sainnhe/gruvbox-material'
+
+Plug 'vimwiki/vimwiki'
+
+Plug 'rainerborene/vim-reek'
+
+" Generate images from code snipped
+Plug 'kristijanhusak/vim-carbon-now-sh'
 
 " Initialize plugin system
 call plug#end()
@@ -135,3 +145,4 @@ vnoremap K :m '<-2<CR>gv=gv
 " ------------------------ configuration for lsp + nvim-cmp + lspkind ------------------------------------------------
 lua require('completion')
 lua require('statusbar')
+lua require('term')

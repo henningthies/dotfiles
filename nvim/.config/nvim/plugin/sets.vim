@@ -48,6 +48,7 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set timeoutlen=250  " Time to wait after ESC
+set noswapfile
 
 " setp options for cmp
 set completeopt=menu,menuone,noselect
