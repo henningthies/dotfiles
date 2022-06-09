@@ -24,6 +24,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'kelly-lin/telescope-ag'
 
 " Native LSP
 Plug 'neovim/nvim-lspconfig'
@@ -48,7 +49,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'tanvirtin/monokai.nvim'
 Plug 'rmehri01/onenord.nvim'
 
-Plug 'vimwiki/vimwiki'
+Plug 'lervag/wiki.vim'
 
 Plug 'rainerborene/vim-reek'
 
@@ -112,9 +113,6 @@ nnoremap <leader>q :bufdo bwipeout <CR>
 
 au WinLeave * set nocursorline
 au WinEnter * set cursorline
-"
-" use the silver searcher instead of ack
-"let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " map insert mode jk to esc
 inoremap jk <esc>
