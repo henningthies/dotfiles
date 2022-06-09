@@ -1,6 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
 
-
+Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
@@ -10,7 +10,6 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'vim-scripts/Rename2'
-Plug 'vim-ruby/vim-ruby'
 Plug 'ngmy/vim-rubocop'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -30,10 +29,12 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 
+Plug 'rafamadriz/friendly-snippets'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 
@@ -42,9 +43,10 @@ Plug 'mileszs/ack.vim'
 Plug 'akinsho/toggleterm.nvim'
 
 " Colorscheme
+Plug 'andersevenrud/nordic.nvim'
 Plug 'arcticicestudio/nord-vim'
-Plug 'sainnhe/sonokai'
-Plug 'sainnhe/gruvbox-material'
+Plug 'tanvirtin/monokai.nvim'
+Plug 'rmehri01/onenord.nvim'
 
 Plug 'vimwiki/vimwiki'
 
@@ -106,6 +108,8 @@ nnoremap <leader><leader> <c-^>
 nnoremap <leader>d :bnext\|bdelete #<CR>
 " nnoremap <leader>d :b#<bar>bd#<CR>
 
+nnoremap <leader>q :bufdo bwipeout <CR>
+
 au WinLeave * set nocursorline
 au WinEnter * set cursorline
 "
@@ -138,11 +142,8 @@ nnoremap N Nzzzv
 " create undo breakpoints on .
 inoremap . .<c-g>u
 
-" move lines
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
-" ------------------------ configuration for lsp + nvim-cmp + lspkind ------------------------------------------------
 lua require('completion')
 lua require('statusbar')
 lua require('term')
+lua require('treesitter')
+"lua require('color')

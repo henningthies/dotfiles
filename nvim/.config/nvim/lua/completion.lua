@@ -63,10 +63,11 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-  }, {
     { name = 'buffer' },
   })
 })
+require("luasnip/loaders/from_vscode").lazy_load()
+require'luasnip'.filetype_extend("ruby", {"rails"})
 
 -- Set configuration for specific filetype.
 --cmp.setup.filetype('gitcommit', {
