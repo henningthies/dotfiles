@@ -22,6 +22,7 @@ end
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local lspconfig = require'lspconfig'
+
 lspconfig.solargraph.setup{
   capabilities = capabilities,
   filetypes = {"ruby", "rakefile"},
@@ -41,6 +42,7 @@ lspconfig.solargraph.setup{
   },
 }
 
+lspconfig.tsserver.setup{}
 
 -- Setup nvim-cmp.
 local cmp = require'cmp'
