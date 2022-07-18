@@ -80,10 +80,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-noremap <S-J> <C-W>j<C-W>_
-noremap <S-K> <C-W>k<C-W>_
-noremap <S-L> <C-W>l<C-W>_
-noremap <S-H> <C-W>h<C-W>_
 " make backtick behave like ' for marks
 nnoremap ` '
 
@@ -119,6 +115,7 @@ inoremap jk <esc>
 
 " toggle NERDTree
 map <leader>n :NERDTreeToggle<cr>
+let NERDTreeShowHidden=1
 
 " edit and reload config
 nnoremap <leader>ev <cmd>vsp $MYVIMRC<cr>

@@ -27,6 +27,7 @@ local Terminal  = require('toggleterm.terminal').Terminal
 local lazygit = Terminal:new({
   cmd = "lazygit",
   dir = "git_dir",
+  close_on_exit = true,
   direction = "float",
   -- function to run on opening the terminal
   on_open = function(term)
