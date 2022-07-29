@@ -26,7 +26,7 @@ local lspconfig = require'lspconfig'
 lspconfig.solargraph.setup{
   capabilities = capabilities,
   filetypes = {"ruby", "rakefile"},
-  root_dir = lspconfig.util.root_pattern("Gemfile", ".git", "."),
+  root_dir = lspconfig.util.root_pattern("Gemfile", ".git"),
   command_path = '/home/henning/.rvm/gems/ruby-2.7.6/wrappers/solargraph',
   on_attach = on_attach,
   settings = {
