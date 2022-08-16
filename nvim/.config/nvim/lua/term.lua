@@ -45,4 +45,3 @@ function _lazygit_toggle()
 end
 
 vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
-

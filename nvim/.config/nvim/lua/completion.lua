@@ -23,7 +23,7 @@ end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local lspconfig = require'lspconfig'
+local lspconfig = require('lspconfig')
 
 lspconfig.solargraph.setup{
   capabilities = capabilities,
@@ -58,9 +58,7 @@ cmp.setup({
   },
   mapping = {
     ["<C-n>"] = cmp.mapping.select_next_item(),
-    ["<Tab>"] = cmp.mapping.select_next_item(),
     ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<CR>"] = cmp.mapping.confirm(),
@@ -72,14 +70,6 @@ cmp.setup({
     { name = 'buffer' },
   })
 })
-require("luasnip/loaders/from_vscode").lazy_load()
-require'luasnip'.filetype_extend("ruby", {"rails"})
 
--- Set configuration for specific filetype.
---cmp.setup.filetype('gitcommit', {
-  --sources = cmp.config.sources({
-    --{ name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it. 
-  --}, {
-    --{ name = 'buffer' },
-  --})
---})
+require("luasnip/loaders/from_vscode").lazy_load()
+require("luasnip").filetype_extend("ruby", {"rails"})

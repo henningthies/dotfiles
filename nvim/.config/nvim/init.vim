@@ -66,8 +66,8 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 "
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 " Have sane search regexpes
-"nnoremap / /\v
-"vnoremap / /\v
+nnoremap / /\v
+vnoremap / /\v
 
 " Movement
 " Have screen-line j/k instead of file-line

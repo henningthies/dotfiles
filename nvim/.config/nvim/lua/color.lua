@@ -1,11 +1,3 @@
---require('nordic').colorscheme({
-    --underline_option = 'none',
-    --italic = true,
-    --italic_comments = false,
-    --minimal_mode = false,
-    --alternate_backgrounds = false
---})
-
 require('onenord').setup({
   theme = nil, -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
   borders = true, -- Split window borders

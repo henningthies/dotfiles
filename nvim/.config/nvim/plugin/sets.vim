@@ -1,15 +1,9 @@
-set nocompatible              " be iMproved, required
-
-set modelines=0
-set number " line numbers
+" set modelines=0
+set number
 set relativenumber
 set ruler
 set noshowmode
-set encoding=utf-8 " Encoding to UTF-8
-"set tw=120
-"set cc=120
-
-" set wrap
+set encoding=utf-8
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -17,20 +11,13 @@ set expandtab
 set backspace=indent,eol,start
 set autoindent
 set list listchars=tab:\ \ ,trail:·
-
-" misc
 set visualbell
-"set ttyfast
-"set lazyredraw " buffer screen redraws instead of updating all the time
 set shell=/bin/zsh
-"set mouse=nicr "enable mouse selection and scrolling
-
-set hidden " Allow unsafed buffers
-set laststatus=2 " always display the status line
-set noshowmode
-set wildignore+=gems/gems/*,doc/*,tmp/*,vendor/gems/*,.git,*.rbc,*.class,.svn,*.o,*.obj,public/assets/*,*.png,*.log,*.jpg,*.svg,*.gif,.bundle
+set hidden
+set laststatus=2
 set wildmenu
 set wildmode=list:longest
+set wildignore+=gems/gems/*,doc/*,tmp/*,vendor/gems/*,.git,*.rbc,*.class,.svn,*.o,*.obj,public/assets/*,*.png,*.log,*.jpg,*.svg,*.gif,.bundle
 set wildignore+=*/node_modules
 set wildignore+=*/log
 set wildignore+=*/tmp
