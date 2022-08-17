@@ -35,11 +35,13 @@ lspconfig.solargraph.setup{
     solargraph = {
       autoformat = true,
       completion = true,
+      definition = true,
+      hover = true,
       diagnostic = true,
       folding = true,
       references = true,
       rename = true,
-      symbols = true
+      symbols = true,
     },
   },
 }
