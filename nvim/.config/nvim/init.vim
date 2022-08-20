@@ -55,6 +55,8 @@ Plug 'rainerborene/vim-reek'
 " Generate images from code snipped
 Plug 'kristijanhusak/vim-carbon-now-sh'
 
+Plug 'wuelnerdotexe/vim-astro'
+
 " Initialize plugin system
 call plug#end()
 
