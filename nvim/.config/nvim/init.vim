@@ -45,10 +45,8 @@ Plug 'mileszs/ack.vim'
 Plug 'akinsho/toggleterm.nvim'
 
 " Colorscheme
-Plug 'andersevenrud/nordic.nvim'
-Plug 'arcticicestudio/nord-vim'
-Plug 'tanvirtin/monokai.nvim'
 Plug 'rmehri01/onenord.nvim'
+Plug 'EdenEast/nightfox.nvim' 
 
 Plug 'lervag/wiki.vim'
 
