@@ -33,7 +33,8 @@ lspconfig.solargraph.setup{
   on_attach = on_attach,
   settings = {
     solargraph = {
-      autoformat = true,
+      autoformat = false,
+      formatting = false,
       completion = true,
       definition = true,
       hover = true,
@@ -48,6 +49,9 @@ lspconfig.solargraph.setup{
 
 lspconfig.tsserver.setup{}
 
+lspconfig.tailwindcss.setup{}
+
+--
 -- Setup nvim-cmp.
 local cmp = require'cmp'
 cmp.setup({
