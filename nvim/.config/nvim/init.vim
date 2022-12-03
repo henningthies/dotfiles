@@ -3,22 +3,22 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-rails'
-Plug 'tpope/vim-rake'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-endwise'
+"Plug 'tpope/vim-rake'
+"Plug 'tpope/vim-bundler'
+"Plug 'tpope/vim-repeat'
+"Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-apathy'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'vim-scripts/Rename2'
-Plug 'ngmy/vim-rubocop'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'tsaleh/vim-align'
+"Plug 'ngmy/vim-rubocop'
+Plug 'preservim/nerdcommenter'
+Plug 'preservim/nerdtree'
+"Plug 'tsaleh/vim-align'
 Plug 'skalnik/vim-vroom'
 Plug 'preservim/vimux'
 Plug 'machakann/vim-highlightedyank'
-Plug 'ap/vim-css-color'
+"Plug 'ap/vim-css-color'
 Plug 'junegunn/goyo.vim'
 
 Plug 'nvim-lualine/lualine.nvim'
@@ -50,7 +50,7 @@ Plug 'EdenEast/nightfox.nvim'
 
 Plug 'lervag/wiki.vim'
 
-Plug 'rainerborene/vim-reek'
+"Plug 'rainerborene/vim-reek'
 
 " Generate images from code snipped
 Plug 'kristijanhusak/vim-carbon-now-sh'
@@ -116,6 +116,7 @@ inoremap jk <esc>
 
 " toggle NERDTree
 map <leader>n :NERDTreeToggle<cr>
+map <leader>nf :NERDTreeFind<cr>
 let NERDTreeShowHidden=1
 
 " edit and reload config
@@ -134,6 +135,8 @@ map Q <Nop>
 " move between search results and center the resul
 nnoremap n nzzzv
 nnoremap N Nzzzv
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
 
 " create undo breakpoints on .
 inoremap . .<c-g>u

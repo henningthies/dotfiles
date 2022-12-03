@@ -7,6 +7,8 @@ let g:yankring_clipboard_monitor=0
 let g:vroom_use_vimux=1
 let g:vroom_use_binstubs=1
 let g:vroom_test_unit_command='test '
+" Zoom the tmux runner pane
+nmap <leader>vz :VimuxZoomRunner<CR>
 
 " Rubocop
 let g:vimrubocop_keymap = 0
