@@ -103,6 +103,8 @@ export EDITOR='nvim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -lagh"
 alias lg="lazygit"
+alias vi="vim"
+alias bo="bundle open \`bundle list --name-only | fzf\`"
 
 # activate Nord colors
 test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
@@ -114,3 +116,5 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/opt/openssl@3/bin:$PATH"
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+
+eval "$(rbenv init - zsh)"
