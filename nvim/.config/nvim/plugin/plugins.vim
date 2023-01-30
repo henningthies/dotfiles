@@ -10,10 +10,6 @@ let g:vroom_test_unit_command='test '
 " Zoom the tmux runner pane
 nmap <leader>vz :VimuxZoomRunner<CR>
 
-" Rubocop
-let g:vimrubocop_keymap = 0
-nmap <Leader>ru :RuboCop -a<CR>
-
 " Cheat.sh
 let g:CheatSheetDoNotMap=1
 

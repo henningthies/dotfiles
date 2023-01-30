@@ -1,6 +1,6 @@
 " set modelines=0
 set number
-set relativenumber
+"set relativenumber
 set ruler
 set noshowmode
 set encoding=utf-8

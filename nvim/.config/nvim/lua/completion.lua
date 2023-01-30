@@ -29,7 +29,8 @@ lspconfig.solargraph.setup{
   capabilities = capabilities,
   filetypes = {"ruby", "rakefile"},
   root_dir = lspconfig.util.root_pattern("Gemfile", ".git"),
-  command_path = '~/.rbenv/shims/solargraph',
+  command_path = '/home/henning/.rvm/gems/ruby-3.2.0/bin/solargraph',
+  --command_path = '~/.rbenv/shims/solargraph',
   on_attach = on_attach,
   settings = {
     solargraph = {

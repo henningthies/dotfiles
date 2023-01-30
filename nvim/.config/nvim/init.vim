@@ -3,23 +3,16 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-rails'
-"Plug 'tpope/vim-rake'
-"Plug 'tpope/vim-bundler'
-"Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-apathy'
 Plug 'vim-scripts/YankRing.vim'
-Plug 'vim-scripts/Rename2'
-"Plug 'ngmy/vim-rubocop'
 Plug 'preservim/nerdcommenter'
-Plug 'preservim/nerdtree'
-"Plug 'tsaleh/vim-align'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
 Plug 'skalnik/vim-vroom'
 Plug 'preservim/vimux'
 Plug 'machakann/vim-highlightedyank'
-"Plug 'ap/vim-css-color'
-Plug 'junegunn/goyo.vim'
 
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -114,10 +107,6 @@ au WinEnter * set cursorline
 " map insert mode jk to esc
 inoremap jk <esc>
 
-" toggle NERDTree
-map <leader>n :NERDTreeToggle<cr>
-map <leader>nf :NERDTreeFind<cr>
-let NERDTreeShowHidden=1
 
 " edit and reload config
 nnoremap <leader>ev <cmd>vsp $MYVIMRC<cr>
@@ -147,3 +136,4 @@ lua require('term')
 lua require('treesitter')
 lua require('mytelescope')
 lua require('color')
+lua require('nvim-tree-setup')

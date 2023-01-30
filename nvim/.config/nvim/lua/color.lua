@@ -18,7 +18,7 @@ require('onenord').setup({
   },
   -- Inverse highlight for different groups
   inverse = {
-    match_paren = false,
+    match_parent = false,
   },
   custom_highlights = {}, -- Overwrite default highlight groups
   custom_colors = {}, -- Overwrite default colors
