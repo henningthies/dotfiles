@@ -14,7 +14,7 @@ return {
     vim.api.nvim_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
     vim.api.nvim_set_keymap("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
-    local map = function (bufnr, lhs, rhs)
+    local map = function(bufnr, lhs, rhs)
       vim.api.nvim_buf_set_keymap(bufnr, "n", lhs, rhs, opts)
     end
 
@@ -71,7 +71,7 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
     }
-    lspconfig.sumneko_lua.setup {
+    lspconfig.lua_ls.setup {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = {

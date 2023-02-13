@@ -1,5 +1,5 @@
 return {
-  "hrsh7th/nvim-cmp", 
+  "hrsh7th/nvim-cmp",
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
@@ -10,7 +10,7 @@ return {
     "rafamadriz/friendly-snippets",
   },
   config = function()
-    local cmp = require"cmp"
+    local cmp = require "cmp"
     cmp.setup({
       snippet = {
         expand = function(args)
@@ -35,6 +35,6 @@ return {
     })
 
     require("luasnip/loaders/from_vscode").lazy_load()
-    require("luasnip").filetype_extend("ruby", {"rails"})
+    require("luasnip").filetype_extend("ruby", { "rails" })
   end,
 }
