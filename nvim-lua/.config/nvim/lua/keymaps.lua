@@ -23,7 +23,7 @@ vim.keymap.set("n", "<leader><leader>", "<c-^>", { noremap=true, silent=true })
 -- clear search highlight with space
 vim.keymap.set("n", "<space>", "<cmd> :nohlsearch<Bar>:echo<CR>", { noremap=true, silent=true })
 
--- map insert mode to jk to esc
+-- map insert mode jk to esc
 vim.keymap.set("i", "jk", "<esc>")
 
 -- move between panes
@@ -58,7 +58,7 @@ vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
 vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
 vim.keymap.set({"n","x"}, "gp", "<Plug>(YankyGPutAfter)")
 vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)")
-vim.keymap.set("n", "<leader>z", ":YankyRingHistory")
+vim.keymap.set("n", "<leader>z", ":YankyRingHistory<cr>")
 vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
 vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
 

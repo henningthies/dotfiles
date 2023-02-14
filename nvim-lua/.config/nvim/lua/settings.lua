@@ -1,4 +1,5 @@
 vim.o.number = true
+vim.o.encoding = "UTF-8"
 vim.o.relativenumber = true
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
@@ -21,8 +22,7 @@ vim.o.undofile = true
 vim.o.timeoutlen=250 -- Time to wait after ESC
 vim.o.swapfile = false
 
--- setp options for cmp
-vim.o.completeopt = "menu,menuone,noselect,preview"
+vim.o.completeopt = "menu,menuone,noselect"
 vim.o.termguicolors = true
 -- max height of autocomplete
 vim.o.pumheight = 10

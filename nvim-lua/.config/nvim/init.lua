@@ -14,6 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
+vim.api.nvim_set_var('FerretMap', 0)
+
 require("lazy").setup("plugins")
 require("settings")
 require("keymaps")
