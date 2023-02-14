@@ -291,6 +291,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
+exec --no-startup-id echo foo | xclip -i
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
@@ -301,9 +302,8 @@ exec_always --no-startup-id fix_xcursor
 #exec_always --no-startup-id /home/me/.config/polybar/launch.sh dark
 #exec_always --no-startup-id /usr/bin/autotiling
 
-# Configura keyboard repeat speed
+# Configure keyboard repeat speed
 exec --no-startup-id xset r rate 250 50
-
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
