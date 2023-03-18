@@ -110,8 +110,6 @@ alias bo="bundle open \`bundle list --name-only | fzf\`"
 test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
 
 #export PATH="/usr/local/opt/openssl@3/bin:$PATH"
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/opt/openssl@3/bin:$PATH"
