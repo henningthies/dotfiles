@@ -9,7 +9,7 @@ return {
     -- after the language server attaches to the current buffer
     local opts = { noremap = true, silent = true }
 
-    vim.api.nvim_set_keymap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+    vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float(nil, { focusable = false })<CR>", opts)
     vim.api.nvim_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
     vim.api.nvim_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
     vim.api.nvim_set_keymap("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
@@ -23,7 +23,7 @@ return {
       vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
       -- Mappings.
-      map(bufnr, "<space>e", "")
+      --map(bufnr, "<space>e", "")
 
 
       map(bufnr, "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
@@ -36,8 +36,8 @@ return {
       map(bufnr, "<space>f", "<cmd>lua vim.lsp.buf.format{ async = true }<CR>")
     end
 
-    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
     local lspconfig = require("lspconfig")
 
     lspconfig.solargraph.setup {
@@ -62,12 +62,18 @@ return {
         },
       },
     }
-
+    lspconfig.clangd.setup {
+      capabilities = capabilities,
+    }
     lspconfig.tsserver.setup {
       capabilities = capabilities,
       on_attach = on_attach,
     }
     lspconfig.tailwindcss.setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+    }
+    lspconfig.rust_analyzer.setup {
       capabilities = capabilities,
       on_attach = on_attach,
     }
