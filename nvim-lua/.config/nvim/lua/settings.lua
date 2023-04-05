@@ -23,6 +23,6 @@ vim.o.timeoutlen=250 -- Time to wait after ESC
 vim.o.swapfile = false
 
 vim.o.completeopt = "menu,menuone,noselect"
-vim.o.termguicolors = true
+-- vim.o.termguicolors = true
 -- max height of autocomplete
 vim.o.pumheight = 10

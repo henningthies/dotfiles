@@ -42,7 +42,7 @@ vim.keymap.set("n", "<leader>F", "<cmd> Telescope find_files<cr>", { silent = tr
 vim.keymap.set("n", "<leader>g", "<cmd> Telescope grep_string<cr>", { silent = true})
 vim.keymap.set("n", "<leader>b", "<cmd> Telescope buffers<cr>", { silent = true})
 vim.keymap.set("n", "<leader>h", "<cmd> Telescope help_tags<cr>", { silent = true})
-vim.keymap.set("n", "<leader>td", "<cmd> Telescope diagnostics<cr>", { silent = true})
+vim.keymap.set("n", "<leader>d", "<cmd> Telescope diagnostics<cr>", { silent = true})
 
 --- center view after search
 vim.keymap.set("n", "n", "nzzzv", { noremap=true, silent=true })

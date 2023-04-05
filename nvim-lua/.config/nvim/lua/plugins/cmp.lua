@@ -17,6 +17,11 @@ return {
           require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
         end,
       },
+      window = {
+        completion = {
+          width = 80,
+        },
+      },
       mapping = {
         ["<C-n>"] = cmp.mapping.select_next_item(),
         -- ["<Tab>"] = cmp.mapping.select_next_item(),

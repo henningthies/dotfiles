@@ -1,6 +1,6 @@
 return {
   "AlexvZyl/nordic.nvim",
-  enable = false,
+  enable = true,
   lazy = false,
   priority = 1000,
   config = function()
