@@ -1,127 +1,70 @@
-
-# Font configuration (changes require restart)
-
-
-# Any items in the `env` entry below will be added as
-# environment variables. Some entries may override variables
-# set by alacritty itself.
+---
 env:
-  # TERM variable
-  #
-  # This value is used to set the `$TERM` environment variable for
-  # each instance of Alacritty. If it is not present, alacritty will
-  # check the local terminfo database and use `alacritty` if it is
-  # available, otherwise `xterm-256color` is used.
   TERM: xterm-256color
   WINIT_X11_SCALE_FACTOR: '1.1'
 
 shell:
-  program: /bin/zsh
+  program: "/bin/zsh"
   args:
-    - --login
-
+  - "--login"
 cursor:
   style: Block
-
 font:
   normal:
-    family: Fantasque Sans Mono Nerd Font
-    #family: Inconsolata Go Nerd Font
-
+    family: FantasqueSansM Nerd Font Mono
 draw_bold_text_with_bright_colors: true
-
 window:
   padding:
     x: 2
     y: 2
-
   dynamic_padding: true
-
-  # Startup Mode (changes require restart)
-  #
-  # Values for `startup_mode`:
-  #   - Windowed
-  #   - Maximized
-  #   - Fullscreen
-  #
-  # Values for `startup_mode` (macOS only):
-  #   - SimpleFullscreen
-  #startup_mode: SimpleFullscreen
-
 selection:
-  # This string contains all characters that are used as separators for
-  # "semantic words" in Alacritty.
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
-
-  # When true, selected text will be copied to the primary clipboard
   save_to_clipboard: true
-
-# Startup directory, unset or None for home directory
 working_directory: None
-
 live_config_reload: true
-
 scrolling:
-  # How many lines of scrollback to keep,
-  # '0' will disable scrolling.
   history: 10000
-
-  # Number of lines the viewport will move for every line
-  # scrolled when scrollback is enabled (history > 0).
   multiplier: 1
-
-
-# https://github.com/rmehri01/onenord.nvim/blob/main/extras/onenord.yaml
-
 colors:
-  # Default colors
   primary:
     background: '0x2E3440'
     foreground: '0xC8D0E0'
-
-  # Normal colors
   normal:
-    black:   '0x3B4252'
-    red:     '0xBF616A'
-    green:   '0xA3BE8C'
-    yellow:  '0xEBCB8B'
-    blue:    '0x81A1C1'
+    black: '0x3B4252'
+    red: '0xBF616A'
+    green: '0xA3BE8C'
+    yellow: '0xEBCB8B'
+    blue: '0x81A1C1'
     magenta: '0xB988B0'
-    cyan:    '0x88C0D0'
-    white:   '0xE5E9F0'
-
-  # Bright colors
+    cyan: '0x88C0D0'
+    white: '0xE5E9F0'
   bright:
-    black:   '0x4C566A'
-    red:     '0xBF616A'
-    green:   '0xA3BE8C'
-    yellow:  '0xEBCB8B'
-    blue:    '0x81A1C1'
+    black: '0x4C566A'
+    red: '0xBF616A'
+    green: '0xA3BE8C'
+    yellow: '0xEBCB8B'
+    blue: '0x81A1C1'
     magenta: '0xB988B0'
-    cyan:    '0x8FBCBB'
-    white:   '0xECEFF4'
-
+    cyan: '0x8FBCBB'
+    white: '0xECEFF4'
   search:
     matches:
-     foreground: '#81A1C1'
-     background: '#4C566A'
+      foreground: "#81A1C1"
+      background: "#4C566A"
     focused_match:
-     foreground: '#EBCB8B'
-     background: '#4C566A'
-
-    footers_bar:
-     background: '#434C5E'
-     foreground: '#88C0D0'
-
+      foreground: "#EBCB8B"
+      background: "#4C566A"
+    footer_bar:
+      background: "#434C5E"
+      foreground: "#88C0D0"
   hints:
     start:
-     foreground: '#B988B0'
-     background: '#4C566A'
-
+      foreground: "#B988B0"
+      background: "#4C566A"
     end:
-     foreground: '#81A1C1'
-     background: '#4C566A'
-
+      foreground: "#81A1C1"
+      background: "#4C566A"
   selection:
-   text: CellForeground
-   background: '#3F4758'
+    text: CellForeground
+    background: "#3F4758"
