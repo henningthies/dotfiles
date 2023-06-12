@@ -1,6 +1,7 @@
-vim.o.number = true
+vim.o.number = false
 vim.o.encoding = "UTF-8"
 vim.o.relativenumber = false
+vim.o.signcolumn = "yes"
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
