@@ -1,9 +1,10 @@
 return {
   'nvim-treesitter/nvim-treesitter',
+  'windwp/nvim-ts-autotag',
   config = function()
     require 'nvim-treesitter.configs'.setup {
       -- A list of parser names, or "all"
-      ensure_installed = { "ruby", "javascript", "html" },
+      ensure_installed = { "ruby", "javascript", "html", "typescript" },
 
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,
@@ -23,6 +24,9 @@ return {
         -- Using this option may slow down your editor, and you may see some duplicate highlights.
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = true,
+      },
+      autotag = {
+        enable = true,
       },
     }
   end,

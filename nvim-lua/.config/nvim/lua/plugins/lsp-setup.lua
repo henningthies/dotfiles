@@ -18,7 +18,7 @@ return {
       vim.api.nvim_buf_set_keymap(bufnr, "n", lhs, rhs, opts)
     end
 
-    local on_attach = function(client, bufnr)
+    local on_attach = function(_, bufnr)
       -- Enable completion triggered by <c-x><c-o>
       vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -50,7 +50,7 @@ return {
       settings = {
         solargraph = {
           autoformat = false,
-          formatting = false,
+          formatting = true,
           completion = true,
           definition = true,
           hover = true,
@@ -62,6 +62,10 @@ return {
         },
       },
     }
+    --lspconfig.standardrb.setup {
+      --capabilities = capabilities,
+      --on_attach = on_attach,
+    --}
     lspconfig.clangd.setup {
       capabilities = capabilities,
     }
@@ -89,6 +93,5 @@ return {
         },
       },
     }
-
   end,
 }

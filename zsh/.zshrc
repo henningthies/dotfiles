@@ -116,3 +116,16 @@ export PATH="/usr/local/opt/openssl@3/bin:$PATH"
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 eval "$(rbenv init - zsh)"
+
+source "/usr/share/nvm/init-nvm.sh"
+
+# pnpm
+export PNPM_HOME="/home/henning/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/home/henning/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
