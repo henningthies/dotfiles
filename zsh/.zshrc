@@ -129,3 +129,38 @@ esac
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/home/henning/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+kex() {
+  kubectl --context agencio exec -it deploy/backend -n ${1:-preview} -- bash
+}
+
+export SOFFICE_PATH="/usr/bin/soffice"
+
+
+# look for running tmux sockets and attach to one
+tmux_attach() {
+    local socket_list=$(lsof -U | grep '/tmp/tmux' | sed -E 's/.*\/([^ ]+).*$/\1/')
+    local options=($(echo "$socket_list"))
+
+    if [ ${#options[@]} -eq 0 ]; then
+        tmux
+        return
+    fi
+
+    if [ ${#options[@]} -eq 1 ]; then
+        tmux
+        return
+    fi
+
+    echo "Select a socket to attach:"
+    select socket in "${options[@]}"; do
+        if [ ! -z "$socket" ]; then
+            tmux -L "$socket" attach
+            break
+        else
+            echo "Invalid selection. Please choose a socket."
+        fi
+    done
+}
+
+alias ta=tmux_attach
