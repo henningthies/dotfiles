@@ -2,3 +2,4 @@ solargraph_definitions.rb
 .solargraph.yml
 dump.rdb
 tags
+.irb_history
