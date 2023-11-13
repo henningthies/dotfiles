@@ -62,10 +62,10 @@ return {
         },
       },
     }
-    --lspconfig.standardrb.setup {
-      --capabilities = capabilities,
-      --on_attach = on_attach,
-    --}
+    lspconfig.standardrb.setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+    }
     lspconfig.clangd.setup {
       capabilities = capabilities,
     }
@@ -78,6 +78,10 @@ return {
       on_attach = on_attach,
     }
     lspconfig.rust_analyzer.setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+    }
+    lspconfig.vuels.setup {
       capabilities = capabilities,
       on_attach = on_attach,
     }

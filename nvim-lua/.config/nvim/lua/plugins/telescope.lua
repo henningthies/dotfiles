@@ -5,6 +5,7 @@ return {
   },
   config = function()
     local actions = require "telescope.actions"
+
     require("telescope").setup {
       pickers = {
         buffers = {
