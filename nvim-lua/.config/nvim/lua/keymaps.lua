@@ -27,10 +27,10 @@ vim.keymap.set("n", "<space>", "<cmd> :nohlsearch<Bar>:echo<CR>", { noremap=true
 vim.keymap.set("i", "jk", "<esc>")
 
 -- move between panes
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "jump left"})
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "jump down"})
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "jump up"})
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "jump right"})
+--vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "jump left"})
+--vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "jump down"})
+--vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "jump up"})
+--vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "jump right"})
 
 -- NvimTree
 vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<cr>", { silent = true})
