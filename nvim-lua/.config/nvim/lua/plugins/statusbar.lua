@@ -14,7 +14,7 @@ return {
         lualine_a = { 'mode' },
         lualine_b = { 'diagnostics' },
         lualine_c = { 'filename' },
-        lualine_x = { 'fileformat', 'filetype' },
+        lualine_x = { 'filetype' },
         lualine_y = { 'diff' },
         lualine_z = { 'location' }
       },
