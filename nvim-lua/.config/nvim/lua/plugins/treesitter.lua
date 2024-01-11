@@ -1,6 +1,8 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  'windwp/nvim-ts-autotag',
+  dependencies = {
+    'windwp/nvim-ts-autotag',
+  },
   config = function()
     require 'nvim-treesitter.configs'.setup {
       -- A list of parser names, or "all"
