@@ -58,6 +58,9 @@ WINIT_X11_SCALE_FACTOR = "0.95"
 [font.normal]
 family = "FantasqueSansM Nerd Font Mono"
 
+[font]
+size = 13
+
 [scrolling]
 history = 10000
 multiplier = 1
@@ -72,6 +75,7 @@ program = "/bin/zsh"
 
 [window]
 dynamic_padding = true
+dynamic_title = false
 
 [window.padding]
 x = 2

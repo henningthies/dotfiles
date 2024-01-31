@@ -117,7 +117,7 @@ export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 eval "$(rbenv init - zsh)"
 
-source "/usr/share/nvm/init-nvm.sh"
+# source "/usr/share/nvm/init-nvm.sh"
 
 # pnpm
 export PNPM_HOME="/home/henning/.local/share/pnpm"
