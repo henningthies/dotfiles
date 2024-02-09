@@ -81,9 +81,10 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
     }
-    lspconfig.vuels.setup {
+    lspconfig.html.setup {
       capabilities = capabilities,
       on_attach = on_attach,
+      filetypes = { "erb", "html", "eruby" },
     }
     lspconfig.lua_ls.setup {
       capabilities = capabilities,
