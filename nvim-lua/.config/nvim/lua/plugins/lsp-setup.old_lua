@@ -44,31 +44,12 @@ return {
       capabilities = capabilities,
       filetypes = { "ruby", "rakefile" },
       root_dir = lspconfig.util.root_pattern("Gemfile", ".git"),
-      --command_path = "/home/henning/.rvm/gems/ruby-3.2.0/bin/solargraph",
-      command_path = "~/.rbenv/shims/solargraph",
-      on_attach = on_attach,
-      settings = {
-        solargraph = {
-          autoformat = false,
-          formatting = true,
-          completion = true,
-          definition = true,
-          hover = true,
-          diagnostic = true,
-          folding = true,
-          references = true,
-          rename = true,
-          symbols = true,
-        },
-      },
-    }
-    lspconfig.standardrb.setup {
-      capabilities = capabilities,
       on_attach = on_attach,
     }
-    lspconfig.clangd.setup {
-      capabilities = capabilities,
-    }
+    --lspconfig.standardrb.setup {
+      --capabilities = capabilities,
+      --on_attach = on_attach,
+    --}
     lspconfig.tsserver.setup {
       capabilities = capabilities,
       on_attach = on_attach,
