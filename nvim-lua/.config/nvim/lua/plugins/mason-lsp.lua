@@ -8,7 +8,7 @@ return {
   config = function()
     require("mason").setup()
     require("mason-lspconfig").setup {
-      ensure_installed = { "lua_ls", "rust_analyzer", "standardrb", "solargraph", "tsserver", "tailwindcss", "html" }
+      ensure_installed = { "lua_ls", "rust_analyzer", "standardrb", "solargraph", "tsserver", "tailwindcss" }
     }
 
     require("mason-lspconfig").setup_handlers {
@@ -20,13 +20,6 @@ return {
 
         require("lspconfig")[server_name].setup {
           capabilities = capabilities,
-        }
-      end,
-
-      ["solargraph"] = function()
-        require("lspconfig").solargraph.setup {
-          filetypes = { "ruby", "rakefile" },
-          root_dir = require("lspconfig/util").root_pattern("Gemfile", ".git"),
         }
       end,
 
