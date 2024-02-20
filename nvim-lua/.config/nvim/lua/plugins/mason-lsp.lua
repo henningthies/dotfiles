@@ -8,7 +8,7 @@ return {
   config = function()
     require("mason").setup()
     require("mason-lspconfig").setup {
-      ensure_installed = { "lua_ls", "rust_analyzer", "standardrb", "solargraph", "tsserver", "tailwindcss" }
+      ensure_installed = { "lua_ls", "rust_analyzer", "solargraph", "tsserver", "tailwindcss" }
     }
 
     require("mason-lspconfig").setup_handlers {
