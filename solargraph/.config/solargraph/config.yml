@@ -12,5 +12,7 @@ reporters:
 - rubocop
 - typecheck
 require_paths: []
-plugins: []
+plugins:
+- solargraph-rails
+- solargraph-rails-patch-for-rails71
 max_files: 5000
