@@ -7,5 +7,6 @@ return {
   "tpope/vim-endwise",
   "tpope/vim-fugitive",
   "tpope/vim-apathy",
+  "tpope/vim-abolish",
   "preservim/nerdcommenter",
 }
