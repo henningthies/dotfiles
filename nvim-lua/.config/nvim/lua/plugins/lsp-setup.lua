@@ -23,7 +23,6 @@ return {
       vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
       -- Mappings.
-      --map(bufnr, "<space>e", "")
 
       map(bufnr, "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
       map(bufnr, "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
@@ -39,51 +38,12 @@ return {
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
     local lspconfig = require("lspconfig")
 
-    lspconfig.erblint.setup {
-      filetypes = { "erb", "html", "eruby" },
+    lspconfig.solargraph.setup {
       capabilities = capabilities,
+      filetypes = { "ruby", "rakefile" },
+      root_dir = lspconfig.util.root_pattern("Gemfile", ".git"),
       on_attach = on_attach,
-      cmd = { "/home/henning/.local/share/nvim/mason/bin/erblint" }
+      command_path = "~/.rbenv/shims/solargraph",
     }
-
-    --lspconfig.solargraph.setup {
-      --capabilities = capabilities,
-      --filetypes = { "ruby", "rakefile" },
-      --root_dir = lspconfig.util.root_pattern("Gemfile", ".git"),
-      --on_attach = on_attach,
-    --}
-    --lspconfig.standardrb.setup {
-      --capabilities = capabilities,
-      --on_attach = on_attach,
-    --}
-    --lspconfig.tsserver.setup {
-      --capabilities = capabilities,
-      --on_attach = on_attach,
-    --}
-    --lspconfig.tailwindcss.setup {
-      --capabilities = capabilities,
-      --on_attach = on_attach,
-    --}
-    --lspconfig.rust_analyzer.setup {
-      --capabilities = capabilities,
-      --on_attach = on_attach,
-    --}
-    --lspconfig.html.setup {
-      --capabilities = capabilities,
-      --on_attach = on_attach,
-      --filetypes = { "erb", "html", "eruby" },
-    --}
-    --lspconfig.lua_ls.setup {
-      --capabilities = capabilities,
-      --on_attach = on_attach,
-      --settings = {
-        --Lua = {
-          --diagnostics = {
-            ---- Get the language server to recognize the `vim` global
-            --globals = { 'vim' },
-          --},
-        --},
-      --},
-    --}
   end,
 }

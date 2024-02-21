@@ -1,14 +1,14 @@
 return {
-  "neovim/nvim-lspconfig",
+  "williamboman/mason.nvim",
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
-    "williamboman/mason.nvim",
+    "neovim/nvim-lspconfig",
     "williamboman/mason-lspconfig.nvim",
   },
   config = function()
     require("mason").setup()
     require("mason-lspconfig").setup {
-      ensure_installed = { "lua_ls", "rust_analyzer", "solargraph", "tsserver", "tailwindcss" }
+      ensure_installed = { "lua_ls", "rust_analyzer", "tsserver", "tailwindcss" }
     }
 
     require("mason-lspconfig").setup_handlers {
