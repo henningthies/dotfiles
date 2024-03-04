@@ -10,7 +10,6 @@ require: []
 domains: []
 reporters:
 - rubocop
-- typecheck
 require_paths: []
 plugins:
 - solargraph-rails
