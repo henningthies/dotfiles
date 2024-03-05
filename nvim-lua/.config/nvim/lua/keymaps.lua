@@ -54,6 +54,9 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap=true, silent=true })
 -- create undo breakpoints on .
 vim.keymap.set("i", ".", ".<c-g>u", { noremap=true, silent=true })
 
+-- close buffer
+vim.keymap.set("n", "<c-x>", ":bd<cr>", { noremap=true, silent=true })
+
 -- yanky
 vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
 vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
