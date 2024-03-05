@@ -26,7 +26,7 @@ vim.keymap.set("n", "<space>", "<cmd> :nohlsearch<Bar>:echo<CR>", { noremap=true
 -- map insert mode jk to esc
 vim.keymap.set("i", "jk", "<esc>")
 
--- move between panes
+-- move between panes / replaced with tmux-navigator
 --vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "jump left"})
 --vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "jump down"})
 --vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "jump up"})
@@ -62,3 +62,6 @@ vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)")
 vim.keymap.set("n", "<leader>z", ":YankyRingHistory<cr>")
 vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
 vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
+
+-- ferret
+vim.keymap.set("n", "<leader>a", "<Plug>(FerretAckWord)")
