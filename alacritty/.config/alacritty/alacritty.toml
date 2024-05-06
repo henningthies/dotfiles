@@ -57,6 +57,7 @@ WINIT_X11_SCALE_FACTOR = "0.95"
 
 [font.normal]
 family = "FantasqueSansM Nerd Font Mono"
+#family = "ComicShannsMono Nerd Font"
 
 [font]
 size = 13

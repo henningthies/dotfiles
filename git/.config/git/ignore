@@ -3,3 +3,4 @@ solargraph_definitions.rb
 dump.rdb
 tags
 .irb_history
+.projections.json
