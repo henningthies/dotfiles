@@ -134,9 +134,6 @@ kex() {
   kubectl --context agencio exec -it deploy/backend -n ${1:-preview} -- bash
 }
 
-export SOFFICE_PATH="/usr/bin/soffice"
-
-
 # look for running tmux sockets and attach to one
 tmux_attach() {
     local socket_list=$(lsof -U | grep '/tmp/tmux' | sed -E 's/.*\/([^ ]+).*$/\1/')
