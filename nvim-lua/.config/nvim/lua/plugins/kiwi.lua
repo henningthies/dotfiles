@@ -6,11 +6,11 @@ return {
     opts = {
         {
             name = "work",
-            path = "/home/henning/wiki/work"
+            path = "wiki/work"
         },
         {
             name = "streaming",
-            path = "/home/henning/wiki/streaming"
+            path = "wiki/streaming"
         }
     },
     keys = {
