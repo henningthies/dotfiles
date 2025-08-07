@@ -34,16 +34,15 @@ return {
       map(bufnr, "<space>f", "<cmd>lua vim.lsp.buf.format{ async = true }<CR>")
     end
 
+    --local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    --local lspconfig = require("lspconfig")
 
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
-    local lspconfig = require("lspconfig")
-
-    lspconfig.solargraph.setup {
-      capabilities = capabilities,
-      filetypes = { "ruby", "rakefile" },
-      root_dir = lspconfig.util.root_pattern("Gemfile", ".git"),
-      on_attach = on_attach,
-      command_path = "~/.rbenv/shims/solargraph",
-    }
+    --lspconfig.solargraph.setup {
+      --capabilities = capabilities,
+      --filetypes = { "ruby", "rakefile" },
+      --root_dir = lspconfig.util.root_pattern("Gemfile", ".git"),
+      --on_attach = on_attach,
+      ----command_path = "~/.rbenv/shims/solargraph",
+    --}
   end,
 }
