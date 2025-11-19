@@ -17,7 +17,7 @@ vim.g.maplocalleader = ","
 vim.api.nvim_set_var('FerretMap', 0)
 
 require("lazy").setup("plugins")
-vim.lsp.enable("ruby-lsp")
-require("lsp")
+--vim.lsp.enable("ruby-lsp")
+--require("lsp")
 require("settings")
 require("keymaps")

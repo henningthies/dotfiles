@@ -8,7 +8,18 @@ return {
   config = function()
     require("mason").setup()
     require("mason-lspconfig").setup {
-      ensure_installed = { "lua_ls", "rust_analyzer", "ts_ls", "tailwindcss", "solargraph" }
+      ensure_installed = { "lua_ls", "ts_ls", "tailwindcss", "ruby_lsp", }
+    }
+
+    -- Setup lua_ls with vim global defined
+    require("lspconfig").lua_ls.setup {
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim" }
+          }
+        }
+      }
     }
 
     -- Global mappings.
