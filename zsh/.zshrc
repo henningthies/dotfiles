@@ -139,16 +139,16 @@ kex() {
 
 # look for running tmux sockets and attach to one
 tmux_attach() {
-    local socket_list=$(lsof -U | grep '/tmp/tmux' | sed -E 's/.*\/([^ ]+).*$/\1/')
+    local socket_list=$(lsof -U 2>/dev/null | grep '/tmp/tmux' | sed -E 's/.*\/([^ ]+).*$/\1/')
     local options=($(echo "$socket_list"))
 
     if [ ${#options[@]} -eq 0 ]; then
-        tmux
+        tmux a
         return
     fi
 
     if [ ${#options[@]} -eq 1 ]; then
-        tmux
+        tmux a
         return
     fi
 
