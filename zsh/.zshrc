@@ -164,3 +164,4 @@ tmux_attach() {
 }
 
 alias ta=tmux_attach
+export PATH="$HOME/.local/bin:$PATH"
