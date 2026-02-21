@@ -12,7 +12,7 @@ return {
     }
 
     -- Setup lua_ls with vim global defined
-    require("lspconfig").lua_ls.setup {
+    vim.lsp.config('lua_ls', {
       settings = {
         Lua = {
           diagnostics = {
@@ -20,7 +20,9 @@ return {
           }
         }
       }
-    }
+    })
+
+    vim.lsp.enable({ 'lua_ls', 'ts_ls', 'tailwindcss', 'ruby_lsp' })
 
     -- Global mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
