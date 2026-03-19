@@ -8,8 +8,13 @@ return {
   config = function()
     require("mason").setup()
     require("mason-lspconfig").setup {
-      ensure_installed = { "lua_ls", "ts_ls", "tailwindcss", "ruby_lsp", }
+      ensure_installed = { "lua_ls", "ts_ls", "tailwindcss", }
     }
+
+    -- Use mise-managed ruby-lsp instead of Mason's
+    vim.lsp.config('ruby_lsp', {
+      cmd = { vim.fn.expand("~/.local/share/mise/shims/ruby-lsp") },
+    })
 
     -- Setup lua_ls with vim global defined
     vim.lsp.config('lua_ls', {
