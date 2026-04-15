@@ -106,6 +106,7 @@ export EDITOR='nvim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -lagh"
 alias lg="lazygit"
+alias ld="lazydocker"
 alias vi="vim"
 alias bo="bundle open \`bundle list --name-only | fzf\`"
 
@@ -136,6 +137,7 @@ export PATH="/home/henning/.rd/bin:$PATH"
 kex() {
   kubectl --context agencio exec -it deploy/backend -n ${1:-preview} -- bash
 }
+
 
 # look for running tmux sockets and attach to one
 tmux_attach() {

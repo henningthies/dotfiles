@@ -7,16 +7,17 @@ return {
   },
   config = function()
     require("mason").setup()
-    require("mason-lspconfig").setup {
-      ensure_installed = { "lua_ls", "ts_ls", "tailwindcss", }
-    }
+
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    vim.lsp.config("*", {
+      capabilities = capabilities,
+    })
 
     -- Use mise-managed ruby-lsp instead of Mason's
     vim.lsp.config('ruby_lsp', {
       cmd = { vim.fn.expand("~/.local/share/mise/shims/ruby-lsp") },
     })
 
-    -- Setup lua_ls with vim global defined
     vim.lsp.config('lua_ls', {
       settings = {
         Lua = {
@@ -26,6 +27,11 @@ return {
         }
       }
     })
+
+    require("mason-lspconfig").setup {
+      ensure_installed = { "lua_ls", "ts_ls", "tailwindcss" },
+      automatic_enable = true,
+    }
 
     vim.lsp.enable({ 'lua_ls', 'ts_ls', 'tailwindcss', 'ruby_lsp' })
 

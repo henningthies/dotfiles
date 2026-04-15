@@ -22,5 +22,4 @@ reporters:
 require_paths: []
 plugins:
 - solargraph-rails
-- solargraph-rails-patch-for-rails71
 max_files: 5000

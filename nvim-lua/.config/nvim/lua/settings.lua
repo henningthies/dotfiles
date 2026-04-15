@@ -1,4 +1,4 @@
-vim.o.number = false
+vim.o.number = true
 vim.o.encoding = "UTF-8"
 vim.o.relativenumber = false
 vim.o.signcolumn = "yes"
