@@ -12,7 +12,7 @@ vim.keymap.set("v", "<leader>c", '"+y', { desc = "copy selection" })
 -- copy line
 vim.keymap.set("n", "<leader>C", '"+Y', { desc = "copy line" })
 -- paste below cursor
-vim.keymap.set("n", "<leader>p", '"+p', { desc = "past below cursor" })
+vim.keymap.set("n", "<leader>p", '"+p', { desc = "paste below cursor" })
 
 -- write file with <leader>s
 vim.keymap.set("n", "<leader>s", ":w<cr>", { desc = "[s]ave current file" })
@@ -26,15 +26,7 @@ vim.keymap.set("n", "<space>", "<cmd> :nohlsearch<Bar>:echo<CR>", { noremap = tr
 -- map insert mode jk to esc
 vim.keymap.set("i", "jk", "<esc>")
 
--- move between panes / replaced with tmux-navigator
---vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "jump left"})
---vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "jump down"})
---vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "jump up"})
---vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "jump right"})
-
--- NvimTree
-vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<cr>", { silent = true })
-vim.keymap.set("n", "<leader>nf", ":NvimTreeFindFile<cr>", { silent = true })
+-- (Window navigation handled by vim-tmux-navigator)
 
 -- Telescope
 vim.keymap.set("n", "<leader>f", "<cmd> Telescope find_files<cr>", { silent = true })
@@ -69,5 +61,13 @@ vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
 -- ferret
 vim.keymap.set("n", "<leader>a", "<Plug>(FerretAckWord)")
 
+-- vim-rails / projectionist: jump to alternate file (class <-> test)
+vim.keymap.set("n", "<leader>.", "<cmd>A<cr>", { silent = true, desc = "Alternate file" })
+vim.keymap.set("n", "<leader>r", "<cmd>R<cr>", { silent = true, desc = "Related file" })
+
 -- luasnip
 vim.keymap.set({ "i" }, "<C-L>", function() require("luasnip").jump(1) end, { silent = true })
+
+-- NerdCommenter-style toggle via built-in gc/gcc (nvim 0.10+)
+vim.keymap.set("n", "<leader>c<space>", "gcc", { remap = true, desc = "Toggle comment line" })
+vim.keymap.set("x", "<leader>c<space>", "gc",  { remap = true, desc = "Toggle comment selection" })

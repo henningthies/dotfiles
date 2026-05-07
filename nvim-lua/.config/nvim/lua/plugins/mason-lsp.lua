@@ -1,5 +1,6 @@
 return {
   "mason-org/mason-lspconfig.nvim",
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "neovim/nvim-lspconfig",
@@ -8,63 +9,56 @@ return {
   config = function()
     require("mason").setup()
 
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
-    vim.lsp.config("*", {
-      capabilities = capabilities,
-    })
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    vim.lsp.config("*", { capabilities = capabilities })
 
     -- Use mise-managed ruby-lsp instead of Mason's
-    vim.lsp.config('ruby_lsp', {
+    vim.lsp.config("ruby_lsp", {
       cmd = { vim.fn.expand("~/.local/share/mise/shims/ruby-lsp") },
     })
 
-    vim.lsp.config('lua_ls', {
+    vim.lsp.config("lua_ls", {
       settings = {
         Lua = {
-          diagnostics = {
-            globals = { "vim" }
-          }
-        }
-      }
+          diagnostics = { globals = { "vim" } },
+        },
+      },
     })
 
-    require("mason-lspconfig").setup {
+    require("mason-lspconfig").setup({
       ensure_installed = { "lua_ls", "ts_ls", "tailwindcss" },
       automatic_enable = true,
-    }
+    })
 
-    vim.lsp.enable({ 'lua_ls', 'ts_ls', 'tailwindcss', 'ruby_lsp' })
+    vim.lsp.enable({ "lua_ls", "ts_ls", "tailwindcss", "ruby_lsp" })
 
-    -- Global mappings.
-    -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+    -- Diagnostics (avoid <space>* to keep <space> = clear-search snappy)
+    vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Diagnostic float" })
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+    vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostics to loclist" })
 
-    -- Use LspAttach autocommand to only map the following keys
-    -- after the language server attaches to the current buffer
-    vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
-        -- Enable completion triggered by <c-x><c-o>
-        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+        vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-        -- Buffer local mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local opts = { buffer = ev.buf }
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-        vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-        vim.keymap.set('n', '<space>f', function()
-          vim.lsp.buf.format { async = true }
-        end, opts)
+        local function map(mode, lhs, rhs, desc)
+          vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, desc = desc })
+        end
+
+        map("n", "gD", vim.lsp.buf.declaration, "Goto declaration")
+        map("n", "gd", vim.lsp.buf.definition, "Goto definition")
+        map("n", "K", vim.lsp.buf.hover, "Hover")
+        map("n", "gi", vim.lsp.buf.implementation, "Goto implementation")
+        map("n", "gr", vim.lsp.buf.references, "References")
+        map("n", "<leader>lD", vim.lsp.buf.type_definition, "Type definition")
+        map("n", "<leader>lr", vim.lsp.buf.rename, "Rename symbol")
+        map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, "Code action")
+        map("n", "<leader>lf", function()
+          vim.lsp.buf.format({ async = true })
+        end, "Format buffer")
       end,
     })
-  end
+  end,
 }

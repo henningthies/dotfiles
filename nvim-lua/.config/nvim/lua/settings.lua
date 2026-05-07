@@ -1,29 +1,34 @@
-vim.o.number = true
-vim.o.encoding = "UTF-8"
-vim.o.relativenumber = false
-vim.o.signcolumn = "yes"
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
-vim.o.softtabstop = 2
-vim.o.expandtab = true
-vim.o.autoindent = true
-vim.o.visualbell = true
+local opt = vim.opt
 
-vim.o.shell = "/bin/zsh"
+opt.number = true
+opt.relativenumber = false
+opt.signcolumn = "yes"
+opt.encoding = "UTF-8"
+opt.termguicolors = true
+
+-- Indentation
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
+opt.expandtab = true
+opt.autoindent = true
+
+-- UI
+opt.visualbell = true
+opt.pumheight = 10 -- max height of autocomplete
+opt.completeopt = "menu,menuone,noselect"
+
+-- Shell
+opt.shell = "/bin/zsh"
 
 -- Search
-vim.o.ignorecase = true -- search case insensitive unless...
-vim.o.smartcase  = true -- search phrase contains a capital letter
-vim.o.showmatch = true
+opt.ignorecase = true -- case insensitive unless...
+opt.smartcase = true  -- search phrase contains a capital letter
+opt.showmatch = true
 
--- undotree
-vim.opt.undodir = os.getenv( "HOME" ) .. '/.undodir'
+-- Persistent undo
+opt.undodir = os.getenv("HOME") .. "/.undodir"
+opt.undofile = true
+opt.swapfile = false
 
-vim.o.undofile = true
-vim.o.timeoutlen=250 -- Time to wait after ESC
-vim.o.swapfile = false
-
-vim.o.completeopt = "menu,menuone,noselect"
--- vim.o.termguicolors = true
--- max height of autocomplete
-vim.o.pumheight = 10
+opt.timeoutlen = 250 -- Time to wait after ESC / leader key
