@@ -74,7 +74,7 @@ ZSH_THEME="risto"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions ssh-agent mise tmux)
+plugins=(git zsh-autosuggestions ssh-agent tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -119,7 +119,11 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/loal/opt/openssl@3/bin:$PATH"
 export PATH="/usr/loal/opt/mysql@5.7/bin:$PATH"
 
-# eval "$(rbenv init - zsh)"
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+elif command -v rbenv >/dev/null 2>&1; then
+  eval "$(rbenv init - zsh)"
+fi
 
 # source "/usr/share/nvm/init-nvm.sh"
 
