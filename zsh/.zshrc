@@ -74,7 +74,7 @@ ZSH_THEME="risto"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions ssh-agent mise)
+plugins=(git zsh-autosuggestions ssh-agent tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,6 +106,7 @@ export EDITOR='nvim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll="ls -lagh"
 alias lg="lazygit"
+alias ld="lazydocker"
 alias vi="vim"
 alias bo="bundle open \`bundle list --name-only | fzf\`"
 
@@ -119,8 +120,11 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/loal/opt/openssl@3/bin:$PATH"
 export PATH="/usr/loal/opt/mysql@5.7/bin:$PATH"
 
-# eval "$(rbenv init - zsh)"
-#eval "$(~/.local/bin/mise activate zsh)"
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+elif command -v rbenv >/dev/null 2>&1; then
+  eval "$(rbenv init - zsh)"
+fi
 
 # source "/usr/share/nvm/init-nvm.sh"
 
@@ -138,6 +142,7 @@ export PATH="/home/henning/.rd/bin:$PATH"
 kex() {
   kubectl --context agencio exec -it deploy/backend -n ${1:-preview} -- bash
 }
+
 
 # look for running tmux sockets and attach to one
 tmux_attach() {

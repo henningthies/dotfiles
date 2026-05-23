@@ -1,5 +1,6 @@
 return {
   "mason-org/mason-lspconfig.nvim",
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "neovim/nvim-lspconfig",
@@ -7,51 +8,72 @@ return {
   },
   config = function()
     require("mason").setup()
-    require("mason-lspconfig").setup {
-      ensure_installed = { "lua_ls", "ts_ls", "tailwindcss", "ruby_lsp", }
-    }
 
-    -- Setup lua_ls with vim global defined
-    require("lspconfig").lua_ls.setup {
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    vim.lsp.config("*", { capabilities = capabilities })
+
+    -- Prefer a version-manager-managed ruby-lsp (so it picks up the project's
+    -- ruby + bundle). Mason's ruby-lsp is intentionally ignored: it launches
+    -- with system ruby and breaks on projects that pin a different version.
+    local ruby_lsp_cmd
+    for _, candidate in ipairs({
+      "~/.local/share/mise/shims/ruby-lsp",
+      "~/.rbenv/shims/ruby-lsp",
+    }) do
+      local path = vim.fn.expand(candidate)
+      if vim.fn.executable(path) == 1 then
+        ruby_lsp_cmd = path
+        break
+      end
+    end
+    if ruby_lsp_cmd then
+      vim.lsp.config("ruby_lsp", { cmd = { ruby_lsp_cmd } })
+    end
+
+    vim.lsp.config("lua_ls", {
       settings = {
         Lua = {
-          diagnostics = {
-            globals = { "vim" }
-          }
-        }
-      }
-    }
+          diagnostics = { globals = { "vim" } },
+        },
+      },
+    })
 
-    -- Global mappings.
-    -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+    -- Exclude ruby_lsp from automatic_enable; we only want it when a
+    -- version-manager shim is present (handled below).
+    require("mason-lspconfig").setup({
+      ensure_installed = { "lua_ls", "ts_ls", "tailwindcss" },
+      automatic_enable = { exclude = { "ruby_lsp" } },
+    })
 
-    -- Use LspAttach autocommand to only map the following keys
-    -- after the language server attaches to the current buffer
-    vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    local servers = { "lua_ls", "ts_ls", "tailwindcss" }
+    if ruby_lsp_cmd then
+      table.insert(servers, "ruby_lsp")
+    end
+    vim.lsp.enable(servers)
+
+    -- Diagnostics (avoid <space>* to keep <space> = clear-search snappy)
+    vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Diagnostic float" })
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+    vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostics to loclist" })
+
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
-        -- Enable completion triggered by <c-x><c-o>
-        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+        vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-        -- Buffer local mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local opts = { buffer = ev.buf }
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-        vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-        vim.keymap.set('n', '<space>f', function()
-          vim.lsp.buf.format { async = true }
-        end, opts)
+        local function map(mode, lhs, rhs, desc)
+          vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, desc = desc })
+        end
+
+        map("n", "gd", vim.lsp.buf.definition, "Goto definition")
+        map("n", "K", vim.lsp.buf.hover, "Hover")
+        map("n", "gi", vim.lsp.buf.implementation, "Goto implementation")
+        map("n", "gr", vim.lsp.buf.references, "References")
+        map("n", "<space>f", function()
+          vim.lsp.buf.format({ async = true })
+        end, "Format buffer")
       end,
     })
-  end
+  end,
 }
