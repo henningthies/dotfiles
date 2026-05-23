@@ -113,12 +113,14 @@ alias bo="bundle open \`bundle list --name-only | fzf\`"
 test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
 
 #export PATH="/usr/local/opt/openssl@3/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/loal/opt/openssl@3/bin:$PATH"
 export PATH="/usr/loal/opt/mysql@5.7/bin:$PATH"
 
 # eval "$(rbenv init - zsh)"
+#eval "$(~/.local/bin/mise activate zsh)"
 
 # source "/usr/share/nvm/init-nvm.sh"
 
@@ -164,3 +166,13 @@ tmux_attach() {
 }
 
 alias ta=tmux_attach
+
+# Personal AI Infrastructure
+export PAI_DIR="$HOME/pai"
+
+# bun completions
+[ -s "/home/henning/.bun/_bun" ] && source "/home/henning/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

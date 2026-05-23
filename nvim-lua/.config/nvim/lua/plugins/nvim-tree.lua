@@ -14,6 +14,7 @@ return {
       },
       filters = {
         dotfiles = false,
+        git_ignored = false,
       },
       actions = {
         open_file = {
