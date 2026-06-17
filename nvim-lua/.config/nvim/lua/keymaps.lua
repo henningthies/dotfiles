@@ -71,3 +71,23 @@ vim.keymap.set({ "i" }, "<C-L>", function() require("luasnip").jump(1) end, { si
 -- NerdCommenter-style toggle via built-in gc/gcc (nvim 0.10+)
 vim.keymap.set("n", "<leader>c<space>", "gcc", { remap = true, desc = "Toggle comment line" })
 vim.keymap.set("x", "<leader>c<space>", "gc",  { remap = true, desc = "Toggle comment selection" })
+
+-- Code review (diffview + Claude annotations) -- prefix <leader>v ("view")
+local review = require("review")
+vim.keymap.set("n", "<leader>vd", function() review.open_diff() end, { desc = "Review: diff vs base branch" })
+vim.keymap.set("n", "<leader>vD", function()
+  vim.ui.input({ prompt = "Diff base: ", default = review.default_base() }, function(b)
+    if b and b ~= "" then review.open_diff(b) end
+  end)
+end, { desc = "Review: diff vs chosen base" })
+vim.keymap.set("n", "<leader>vc", "<cmd>DiffviewClose<cr>",       { desc = "Review: close diff" })
+vim.keymap.set("n", "<leader>vH", "<cmd>DiffviewFileHistory<cr>", { desc = "Review: file history" })
+vim.keymap.set("n", "<leader>va", function() review.add() end,                { desc = "Review: add comment" })
+vim.keymap.set("x", "<leader>va", ":<C-u>lua require('review').add({ range = true })<cr>", { silent = true, desc = "Review: add comment (range)" })
+vim.keymap.set("n", "<leader>vl", function() review.list() end,   { desc = "Review: list comments (quickfix)" })
+vim.keymap.set("n", "<leader>ve", function() review.export() end, { desc = "Review: export to .claude/review.md" })
+vim.keymap.set("n", "<leader>vx", function() review.clear() end,  { desc = "Review: clear comments" })
+
+-- Quickfix navigation (used by the review list above)
+vim.keymap.set("n", "]q", "<cmd>cnext<cr>zz", { silent = true, desc = "Next quickfix item" })
+vim.keymap.set("n", "[q", "<cmd>cprev<cr>zz", { silent = true, desc = "Prev quickfix item" })
