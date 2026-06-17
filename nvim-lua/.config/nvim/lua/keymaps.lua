@@ -63,7 +63,10 @@ vim.keymap.set("n", "<leader>a", "<Plug>(FerretAckWord)")
 
 -- vim-rails / projectionist: jump to alternate file (class <-> test)
 vim.keymap.set("n", "<leader>.", "<cmd>A<cr>", { silent = true, desc = "Alternate file" })
-vim.keymap.set("n", "<leader>r", "<cmd>R<cr>", { silent = true, desc = "Related file" })
+
+-- vroom: run test file / nearest test
+vim.keymap.set("n", "<leader>r", "<cmd>VroomRunTestFile<cr>",    { silent = true, desc = "Run test file" })
+vim.keymap.set("n", "<leader>R", "<cmd>VroomRunNearestTest<cr>", { silent = true, desc = "Run nearest test" })
 
 -- luasnip
 vim.keymap.set({ "i" }, "<C-L>", function() require("luasnip").jump(1) end, { silent = true })

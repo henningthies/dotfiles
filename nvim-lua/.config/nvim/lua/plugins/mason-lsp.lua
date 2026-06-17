@@ -15,6 +15,9 @@ return {
     -- Prefer a version-manager-managed ruby-lsp (so it picks up the project's
     -- ruby + bundle). Mason's ruby-lsp is intentionally ignored: it launches
     -- with system ruby and breaks on projects that pin a different version.
+    -- We probe the shim with --version because the shim file exists even
+    -- when the gem is missing from the active ruby (rbenv prints "command
+    -- not found" and exits 127).
     local ruby_lsp_cmd
     for _, candidate in ipairs({
       "~/.local/share/mise/shims/ruby-lsp",
@@ -22,8 +25,11 @@ return {
     }) do
       local path = vim.fn.expand(candidate)
       if vim.fn.executable(path) == 1 then
-        ruby_lsp_cmd = path
-        break
+        local probe = vim.system({ path, "--version" }, { text = true }):wait()
+        if probe.code == 0 then
+          ruby_lsp_cmd = path
+          break
+        end
       end
     end
     if ruby_lsp_cmd then
