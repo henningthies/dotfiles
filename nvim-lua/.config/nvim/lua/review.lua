@@ -49,6 +49,49 @@ function M.default_base()
   return "HEAD"
 end
 
+-- A floating-window input prompt. Unlike vim.ui.input (which uses the command
+-- line), a long comment wraps inside the window instead of overflowing the
+-- cmdline and triggering Neovim's hit-enter prompt.
+local function floating_input(prompt, on_confirm)
+  local width = math.min(80, vim.o.columns - 4)
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.bo[buf].bufhidden = "wipe"
+
+  local win = vim.api.nvim_open_win(buf, true, {
+    relative = "cursor",
+    row = 1,
+    col = 0,
+    width = width,
+    height = 1,
+    style = "minimal",
+    border = "rounded",
+    title = " " .. prompt .. " ",
+    title_pos = "left",
+  })
+  vim.wo[win].wrap = true
+
+  local done = false
+  local function finish(value)
+    if done then return end
+    done = true
+    if vim.api.nvim_win_is_valid(win) then
+      vim.api.nvim_win_close(win, true)
+    end
+    on_confirm(value)
+  end
+
+  local function confirm()
+    local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+    finish(table.concat(lines, " "))
+  end
+
+  vim.keymap.set({ "i", "n" }, "<CR>", confirm, { buffer = buf })
+  vim.keymap.set("n", "<Esc>", function() finish(nil) end, { buffer = buf })
+  vim.keymap.set("n", "q", function() finish(nil) end, { buffer = buf })
+
+  vim.cmd("startinsert")
+end
+
 local function refresh_quickfix()
   local items = {}
   for _, a in ipairs(M.annotations) do
@@ -79,7 +122,7 @@ function M.add(opts)
 
   local code = vim.api.nvim_buf_get_lines(buf, lnum - 1, end_lnum, false)
 
-  vim.ui.input({ prompt = "Review @ " .. file .. ":" .. lnum .. "  " }, function(input)
+  floating_input("Review @ " .. file .. ":" .. lnum, function(input)
     if not input or input == "" then return end
     table.insert(M.annotations, {
       file = file,
