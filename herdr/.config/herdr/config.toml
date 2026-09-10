@@ -18,7 +18,9 @@ close_pane = "prefix+x"             # tmux: bind x kill-pane
 toggle_sidebar = "prefix+m"         # tmux: bind m set-option -g status
 
 # Pane-Fokus — tmux: bind -n C-M-<arrow> select-pane
-# ctrl+h/j/k/l laufen zusätzlich über den Navigator unten.
+# ctrl+h/j/k/l bindet herdr bewusst nicht: die Chords gehen an Shells und
+# Agents durch. In nvim wechselt lua/multiplexer.lua am Fensterrand ins
+# Nachbar-Pane, zurück geht es über die Pfeile hier.
 focus_pane_left = "ctrl+alt+left"
 focus_pane_down = "ctrl+alt+down"
 focus_pane_up = "ctrl+alt+up"
@@ -43,28 +45,6 @@ rename_workspace = "prefix+shift+r" # tmux: bind R rename-session
 close_workspace = "prefix+shift+k"  # tmux: bind K kill-session
 previous_workspace = "alt+up"       # tmux: bind -n M-Up switch-client -p
 next_workspace = "alt+down"         # tmux: bind -n M-Down switch-client -n
-
-# vim-tmux-navigator: ctrl+h/j/k/l wechselt nahtlos zwischen nvim-Fenstern
-# und herdr-Panes. Die Entscheidung trifft herdr-nav.sh.
-[[keys.command]]
-key = "ctrl+h"
-type = "shell"
-command = "/home/henning/.config/herdr/herdr-nav.sh left ctrl+h"
-
-[[keys.command]]
-key = "ctrl+j"
-type = "shell"
-command = "/home/henning/.config/herdr/herdr-nav.sh down ctrl+j"
-
-[[keys.command]]
-key = "ctrl+k"
-type = "shell"
-command = "/home/henning/.config/herdr/herdr-nav.sh up ctrl+k"
-
-[[keys.command]]
-key = "ctrl+l"
-type = "shell"
-command = "/home/henning/.config/herdr/herdr-nav.sh right ctrl+l"
 
 [ui]
 agent_panel_sort = "spaces"
