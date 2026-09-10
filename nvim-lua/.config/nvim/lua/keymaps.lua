@@ -26,7 +26,15 @@ vim.keymap.set("n", "<space>", "<cmd> :nohlsearch<Bar>:echo<CR>", { noremap = tr
 -- map insert mode jk to esc
 vim.keymap.set("i", "jk", "<esc>")
 
--- (Window navigation handled by vim-tmux-navigator)
+-- Window navigation: unter tmux macht das vim-tmux-navigator selbst,
+-- unter herdr übernimmt lua/multiplexer.lua
+local mux = require("multiplexer")
+if mux.pane then
+  for _, key in ipairs({ "h", "j", "k", "l" }) do
+    vim.keymap.set("n", "<C-" .. key .. ">", function() mux.navigate(key) end,
+      { silent = true, desc = "Navigate window / herdr pane" })
+  end
+end
 
 -- Telescope
 vim.keymap.set("n", "<leader>f", "<cmd> Telescope find_files<cr>", { silent = true })

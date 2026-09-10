@@ -32,3 +32,19 @@ opt.undofile = true
 opt.swapfile = false
 
 opt.timeoutlen = 250 -- Time to wait after ESC / leader key
+
+-- Clipboard in herdr panes: no clipboard tool here and herdr does not answer
+-- OSC 52 read queries, so nvim's OSC 52 paste blocks for 10s. Copy keeps going
+-- out via OSC 52, paste reads back the unnamed register instead.
+if vim.env.HERDR_PANE_ID then
+  local osc52 = require("vim.ui.clipboard.osc52")
+  local paste = function()
+    return vim.split(vim.fn.getreg('"'), "\n")
+  end
+
+  vim.g.clipboard = {
+    name = "herdr-osc52",
+    copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") },
+    paste = { ["+"] = paste, ["*"] = paste },
+  }
+end
