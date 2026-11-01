@@ -49,6 +49,7 @@ next_workspace = "alt+down"         # tmux: bind -n M-Down switch-client -n
 [ui]
 agent_panel_sort = "spaces"
 
+status_indicators = "dots"
 [ui.toast]
 delivery = "herdr"
 
