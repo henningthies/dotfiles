@@ -184,3 +184,6 @@ export PAI_DIR="$HOME/pai"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# YouTube nur als Audio abspielen (spart Daten)
+alias yta='mpv --no-video --ytdl-format="bestaudio[abr<=70]/worstaudio"'

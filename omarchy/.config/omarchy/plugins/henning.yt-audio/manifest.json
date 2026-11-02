@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "henning.yt-audio",
+  "name": "YouTube Audio",
+  "version": "1.0.0",
+  "author": "henning",
+  "description": "Play YouTube audio-only via mpv (URL or search) with play/pause/stop",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "YouTube Audio",
+    "description": "Paste a YouTube URL or search term and play audio only",
+    "category": "Media",
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}
