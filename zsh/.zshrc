@@ -76,6 +76,9 @@ ZSH_THEME="risto"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions ssh-agent tmux)
 
+# Vorhandenen Agent (systemd-Socket oder SSH-Forwarding) nutzen statt einen neuen zu starten
+zstyle :omz:plugins:ssh-agent honor-existing yes
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
