@@ -64,12 +64,15 @@ hl.config({
     kb_options = "caps:none,grp:alt_space_toggle,lv3:rwin_switch",
     repeat_rate = 50,
     repeat_delay = 250,
-    sensitivity = -0.9,
     touchpad = {
       scroll_factor = 0.4,
     },
   },
 })
+
+-- Niedrige Empfindlichkeit nur für die Razer-Maus (die ist sehr empfindlich);
+-- Touchpad/TrackPoint am Laptop bleiben auf Standard.
+hl.device({ name = "razer-razer-deathadder-essential", sensitivity = -0.9 })
 
 o.window("(Alacritty|kitty|foot)", { scroll_touchpad = 1.5 })
 o.window("com.mitchellh.ghostty", { scroll_touchpad = 0.2 })
