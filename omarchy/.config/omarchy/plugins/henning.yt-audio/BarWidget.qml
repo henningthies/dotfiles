@@ -22,7 +22,43 @@ BarWidget {
   property bool paused: false
   property string currentInput: ""
 
-  // Last 10 played entries: [{ input, title }], newest first.
+  // Playback position tracking (resume where you left off).
+  property real lastPos: 0        // seconds, from mpv time-pos
+  property real duration: 0
+  property bool loading: false    // true between loadfile and file-loaded; ignores stale time-pos
+  property real resumePos: 0      // position to seek to once the file is loaded
+
+  function fmtTime(sec) {
+    sec = Math.floor(sec)
+    var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60
+    var mm = (h > 0 && m < 10 ? "0" : "") + m
+    return (h > 0 ? h + ":" : "") + mm + ":" + (s < 10 ? "0" : "") + s
+  }
+
+  function savedPos(input) {
+    for (var i = 0; i < history.length; i++)
+      if (history[i].input === input) return history[i].pos || 0
+    return 0
+  }
+
+  // Persist the current position into the history entry of the running track.
+  function saveProgress() {
+    if (currentInput === "" || loading || lastPos <= 0) return
+    // Near the end (or finished): reset so the next play starts from the beginning.
+    var pos = (duration > 0 && lastPos > duration - 15) ? 0 : Math.floor(lastPos)
+    var list = history.slice()
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].input === currentInput) {
+        if ((list[i].pos || 0) === pos) return
+        list[i] = { input: list[i].input, title: list[i].title, pos: pos }
+        history = list
+        saveHistory()
+        return
+      }
+    }
+  }
+
+  // Last 10 played entries: [{ input, title, pos }], newest first.
   readonly property int historyMax: 10
   readonly property string historyPath: (Quickshell.env("XDG_STATE_HOME") || (Quickshell.env("HOME") + "/.local/state")) + "/henning-yt-audio-history.json"
   property var history: []
@@ -32,9 +68,9 @@ BarWidget {
   }
 
   function addHistory(input) {
-    var list = [{ input: input, title: "" }]
+    var list = [{ input: input, title: "", pos: 0 }]
     for (var i = 0; i < history.length && list.length < historyMax; i++) {
-      if (history[i].input === input) list[0].title = history[i].title || ""
+      if (history[i].input === input) { list[0].title = history[i].title || ""; list[0].pos = history[i].pos || 0 }
       else list.push(history[i])
     }
     history = list
@@ -46,7 +82,7 @@ BarWidget {
     var list = history.slice()
     for (var i = 0; i < list.length; i++) {
       if (list[i].input === currentInput && list[i].title !== mediaTitle) {
-        list[i] = { input: list[i].input, title: mediaTitle }
+        list[i] = { input: list[i].input, title: mediaTitle, pos: list[i].pos || 0 }
         history = list
         saveHistory()
         return
@@ -84,8 +120,14 @@ BarWidget {
     if (text === "") return
     var target = /^https?:\/\//.test(text) ? text : "ytdl://ytsearch:" + text
     statusText = ""
+    saveProgress()  // flush position of the track we are leaving
+    var resume = savedPos(text)
     currentInput = text
     addHistory(text)
+    loading = true
+    lastPos = 0
+    duration = 0
+    resumePos = resume
     if (mpvProc.running) {
       // Reuse the running mpv: just load the new track.
       send(["loadfile", target, "replace"])
@@ -99,9 +141,17 @@ BarWidget {
   function start(target) {
     mediaTitle = ""
     paused = false
+    loading = true
     mpvProc.command = ["mpv", "--no-video", "--no-terminal", "--idle=no",
                        "--input-ipc-server=" + socketPath,
-                       "--ytdl-format=" + ytdlFormat, target]
+                       "--ytdl-format=" + ytdlFormat,
+                       // Large read-ahead buffer so short network hiccups don't cause dropouts
+                       // (mpv default is only ~1s). Audio at ~70kbps: 2 min is just ~1 MB.
+                       "--cache=yes", "--demuxer-readahead-secs=180",
+                       "--demuxer-max-bytes=64MiB",
+                       "--network-timeout=30",
+                       "--stream-lavf-o=reconnect=1,reconnect_streamed=1,reconnect_delay_max=5",
+                       target]
     mpvProc.running = true
     connectTimer.restart()
   }
@@ -109,6 +159,7 @@ BarWidget {
   function togglePause() { send(["cycle", "pause"]) }
 
   function stop() {
+    saveProgress()
     send(["quit"])
     stopFallback.restart()
   }
@@ -116,6 +167,7 @@ BarWidget {
   Process {
     id: mpvProc
     onExited: function(code) {
+      root.saveProgress()
       connectTimer.stop()
       ipc.connected = false
       root.mediaTitle = ""
@@ -129,6 +181,14 @@ BarWidget {
     id: stopFallback
     interval: 1500
     onTriggered: if (mpvProc.running) mpvProc.running = false
+  }
+
+  // Periodically persist the position so a crash/logout loses at most a few seconds.
+  Timer {
+    interval: 5000
+    repeat: true
+    running: root.playing && !root.paused && !root.loading
+    onTriggered: root.saveProgress()
   }
 
   // mpv creates the socket shortly after start; retry until connected.
@@ -151,15 +211,25 @@ BarWidget {
         connectTimer.stop()
         root.send(["observe_property", 1, "media-title"])
         root.send(["observe_property", 2, "pause"])
+        root.send(["observe_property", 3, "time-pos"])
+        root.send(["observe_property", 4, "duration"])
       }
     }
     parser: SplitParser {
       onRead: function(line) {
         var msg
         try { msg = JSON.parse(line) } catch (e) { return }
+        if (msg.event === "file-loaded") {
+          root.loading = false
+          if (root.resumePos > 5) root.send(["seek", root.resumePos, "absolute"])
+          root.resumePos = 0
+          return
+        }
         if (msg.event !== "property-change") return
         if (msg.name === "media-title") root.mediaTitle = msg.data ? String(msg.data) : ""
-        else if (msg.name === "pause") root.paused = !!msg.data
+        else if (msg.name === "pause") { root.paused = !!msg.data; if (root.paused) root.saveProgress() }
+        else if (msg.name === "time-pos") { if (!root.loading && msg.data !== null && msg.data !== undefined) root.lastPos = Number(msg.data) }
+        else if (msg.name === "duration") { if (!root.loading) root.duration = msg.data ? Number(msg.data) : 0 }
       }
     }
   }
@@ -324,6 +394,7 @@ BarWidget {
               textFormat: Text.PlainText
               elide: Text.ElideRight
               text: (entry.current ? "󰝚  " : "") + (entry.modelData.title || entry.modelData.input)
+                    + (entry.modelData.pos > 5 ? "  · " + root.fmtTime(entry.modelData.pos) : "")
               color: root.bar.foreground
               font.family: root.bar.fontFamily
               font.pixelSize: Style.font.bodySmall
