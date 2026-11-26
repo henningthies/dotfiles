@@ -76,3 +76,11 @@ hl.device({ name = "razer-razer-deathadder-essential", sensitivity = -0.9 })
 
 o.window("(Alacritty|kitty|foot)", { scroll_touchpad = 1.5 })
 o.window("com.mitchellh.ghostty", { scroll_touchpad = 0.2 })
+
+-- Internes ThinkPad-Keyboard: linke Super- und Alt-Taste tauschen (wie die externen Tastaturen).
+hl.device({
+  name = "at-translated-set-2-keyboard",
+  kb_layout = "us",
+  kb_variant = "de_se_fi",
+  kb_options = "caps:none,grp:alt_space_toggle,lv3:rwin_switch,altwin:swap_lalt_lwin",
+})

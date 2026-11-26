@@ -70,3 +70,7 @@ o.bind("SUPER + SHIFT + CTRL + LEFT", "Previous window in group", hl.dsp.group.p
 -- einmal drücken startet, nochmal drücken stoppt und transkribiert.
 -- Ersetzt den evdev-Hotkey von Voxtype, der die input-Gruppe bräuchte.
 o.bind("code:66", "Toggle dictation", "voxtype record toggle")
+
+-- Power mode toggle: performance <-> power saver (SUPER+SHIFT+P war: Google Photos)
+hl.unbind("SUPER + SHIFT + P")
+o.bind("SUPER + SHIFT + P", "Toggle power mode", "~/.local/bin/power-mode toggle")
